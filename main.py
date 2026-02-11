@@ -2,10 +2,22 @@ import datetime
 
 def add_log():
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    activity = input("What did you code today? ")
-    time_spent = input("Time spent (in hours): ")
-    errors = input("Errors faced (if any): ")
-    learning = input("What did you learn today? ")
+
+    activity = input("What did you code today? ").strip()
+    if not activity:
+        print("Activity cannot be empty.")
+        return
+
+    try:
+        time_spent = float(input("Time spent (in hours): "))
+        if time_spent <= 0:
+            raise ValueError
+    except ValueError:
+        print("Please enter a valid number greater than 0.")
+        return
+
+    errors = input("Errors faced (if any): ").strip()
+    learning = input("What did you learn today? ").strip()
 
     log = f"{timestamp},{activity},{time_spent},{errors},{learning}\n"
 
