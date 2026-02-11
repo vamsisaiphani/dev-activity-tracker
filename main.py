@@ -1,13 +1,13 @@
 import datetime
 
 def add_log():
-    today = datetime.date.today()
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     activity = input("What did you code today? ")
     time_spent = input("Time spent (in hours): ")
     errors = input("Errors faced (if any): ")
     learning = input("What did you learn today? ")
 
-    log = f"{today},{activity},{time_spent},{errors},{learning}\n"
+    log = f"{timestamp},{activity},{time_spent},{errors},{learning}\n"
 
     with open("data/logs.csv", "a") as file:
         file.write(log)
